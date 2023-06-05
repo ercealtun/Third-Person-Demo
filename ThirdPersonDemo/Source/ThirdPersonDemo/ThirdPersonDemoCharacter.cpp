@@ -2,7 +2,6 @@
 
 #include "ThirdPersonDemoCharacter.h"
 
-#include "CollectableBase.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -11,6 +10,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "InteractInterface.h"
 #include "Components/SphereComponent.h"
 
 
@@ -139,12 +139,10 @@ void AThirdPersonDemoCharacter::SphereCollisionBeginOverlap(UPrimitiveComponent*
 {
 	if(OtherActor)
 	{
-		ACollectableBase *CollectableActor = Cast<ACollectableBase>(OtherActor);
-		if(CollectableActor)
+		IInteractInterface *InteractActor = Cast<IInteractInterface>(OtherActor);
+		if(InteractActor)
 		{
-			GEngine->AddOnScreenDebugMessage(-1,5.f,FColor::Green,
-				FString::Printf(TEXT("CollectableActor: %s"),*OtherActor->GetName()));
-			CollectableActor->Destroy();
+			InteractActor->Interact(this);
 		}
 		
 	}

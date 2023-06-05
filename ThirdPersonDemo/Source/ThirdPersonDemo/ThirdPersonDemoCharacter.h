@@ -41,6 +41,10 @@ class AThirdPersonDemoCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
+	/* Health */
+	UPROPERTY(EditDefaultsOnly)
+	float Health = 100.f;
+
 public:
 	AThirdPersonDemoCharacter();
 
@@ -69,5 +73,11 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	/** Set health **/
+	FORCEINLINE void SetHealth(float NewHealth) { Health = NewHealth; }
+
+	/** Get health **/
+	FORCEINLINE float GetHealth() { return Health; }
 };
 

@@ -3,11 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InteractInterface.h"
 #include "GameFramework/Actor.h"
 #include "CollectableBase.generated.h"
 
 UCLASS()
-class THIRDPERSONDEMO_API ACollectableBase : public AActor
+class THIRDPERSONDEMO_API ACollectableBase : public AActor , public IInteractInterface
 {
 	GENERATED_BODY()
 	
@@ -25,6 +26,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UStaticMeshComponent* MeshComponent;
+
+	virtual void Interact(class AThirdPersonDemoCharacter* CharRef) override;
 
 	
 

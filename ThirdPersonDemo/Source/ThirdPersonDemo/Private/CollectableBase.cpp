@@ -2,6 +2,7 @@
 
 
 #include "CollectableBase.h"
+#include "ThirdPersonDemo/ThirdPersonDemoCharacter.h"
 
 // Sets default values
 ACollectableBase::ACollectableBase()
@@ -25,6 +26,17 @@ void ACollectableBase::BeginPlay()
 void ACollectableBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+}
+
+void ACollectableBase::Interact(AThirdPersonDemoCharacter* CharRef)
+{
+	if(CharRef)
+	{
+		GEngine->AddOnScreenDebugMessage(-1,5.f,FColor::Green,
+	FString::Printf(TEXT("CharRef name: %s"), *CharRef->GetName()));
+		Destroy();
+	}
 
 }
 
