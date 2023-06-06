@@ -29,6 +29,11 @@ public:
 
 	virtual void Interact(class AThirdPersonDemoCharacter* CharRef) override;
 
+	void SpawnDestroyParticle();
+
+	UPROPERTY(EditDefaultsOnly)
+	UParticleSystem* DestroyParticle;
+
 	
 
 };

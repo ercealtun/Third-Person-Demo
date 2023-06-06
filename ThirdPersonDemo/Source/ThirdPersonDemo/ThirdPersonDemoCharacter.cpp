@@ -75,6 +75,19 @@ void AThirdPersonDemoCharacter::BeginPlay()
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &AThirdPersonDemoCharacter::SphereCollisionBeginOverlap);
 }
 
+void AThirdPersonDemoCharacter::Speed()
+{
+	GetCharacterMovement()->MaxWalkSpeed = NewSpeed;
+	GetWorldTimerManager().SetTimer(TH_Speed, this, &AThirdPersonDemoCharacter::SpeedEnd, SpeedTime);
+}
+
+void AThirdPersonDemoCharacter::SpeedEnd()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 600.f;
+	//Resetting the timer
+	GetWorldTimerManager().ClearTimer(TH_Speed);
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -141,12 +154,8 @@ void AThirdPersonDemoCharacter::SphereCollisionBeginOverlap(UPrimitiveComponent*
 	{
 		IInteractInterface *InteractActor = Cast<IInteractInterface>(OtherActor);
 		if(InteractActor)
-		{
 			InteractActor->Interact(this);
-		}
-		
 	}
-
 }
 
 

@@ -2,6 +2,8 @@
 
 
 #include "CollectableBase.h"
+
+#include "Kismet/GameplayStatics.h"
 #include "ThirdPersonDemo/ThirdPersonDemoCharacter.h"
 
 // Sets default values
@@ -31,12 +33,19 @@ void ACollectableBase::Tick(float DeltaTime)
 
 void ACollectableBase::Interact(AThirdPersonDemoCharacter* CharRef)
 {
-	if(CharRef)
+	/*
+	* 	if(CharRef)
 	{
 		GEngine->AddOnScreenDebugMessage(-1,5.f,FColor::Green,
 	FString::Printf(TEXT("CharRef name: %s"), *CharRef->GetName()));
 		Destroy();
 	}
+	 */
 
+}
+
+void ACollectableBase::SpawnDestroyParticle()
+{
+	UGameplayStatics::SpawnEmitterAtLocation(this, DestroyParticle, GetActorLocation());
 }
 

@@ -45,6 +45,17 @@ class AThirdPersonDemoCharacter : public ACharacter
 	UPROPERTY(EditDefaultsOnly)
 	float Health = 100.f;
 
+	/*New Speed*/
+	UPROPERTY(EditDefaultsOnly)
+	float NewSpeed = 1000.f;
+
+	/*Timer handle of Speed*/
+	FTimerHandle TH_Speed;
+
+	/*Speed Time*/
+	UPROPERTY(EditDefaultsOnly)
+	float SpeedTime = 3.f;
+
 public:
 	AThirdPersonDemoCharacter();
 
@@ -79,5 +90,8 @@ public:
 
 	/** Get health **/
 	FORCEINLINE float GetHealth() { return Health; }
+
+	void Speed();
+	void SpeedEnd();
 };
 
