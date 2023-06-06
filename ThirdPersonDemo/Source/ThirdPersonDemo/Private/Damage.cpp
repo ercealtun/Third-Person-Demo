@@ -12,8 +12,7 @@ void ADamage::Interact(AThirdPersonDemoCharacter* CharRef)
 	if(CharRef)
 	{
 		CharRef->SetHealth(CharRef->GetHealth() - DamageAmount);
-		GEngine->AddOnScreenDebugMessage(-1,5.f,FColor::Red,
-		FString::Printf(TEXT("CharRef name: %f"), CharRef->GetHealth()));
+		SpawnDestroyParticle();
 		Destroy();
 	}
 }

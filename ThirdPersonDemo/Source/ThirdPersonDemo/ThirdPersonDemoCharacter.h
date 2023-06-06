@@ -42,12 +42,16 @@ class AThirdPersonDemoCharacter : public ACharacter
 	class UInputAction* LookAction;
 
 	/* Health */
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float Health = 100.f;
 
 	/*New Speed*/
 	UPROPERTY(EditDefaultsOnly)
 	float NewSpeed = 1000.f;
+
+	/*Score*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	int Score = 0;
 
 	/*Timer handle of Speed*/
 	FTimerHandle TH_Speed;
@@ -80,16 +84,16 @@ protected:
 	virtual void BeginPlay();
 
 public:
-	/** Returns CameraBoom subobject **/
+	/** GETTERS **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-
-	/** Set health **/
-	FORCEINLINE void SetHealth(float NewHealth) { Health = NewHealth; }
-
-	/** Get health **/
 	FORCEINLINE float GetHealth() { return Health; }
+	FORCEINLINE int GetScore() { return Score; }
+	
+	/** SETTERS **/
+	FORCEINLINE void SetHealth(float NewHealth) { Health = NewHealth; }
+	FORCEINLINE void SetScore(int NewScore) { Score = NewScore; }
+
 
 	void Speed();
 	void SpeedEnd();
