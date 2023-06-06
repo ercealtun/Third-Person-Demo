@@ -7,10 +7,13 @@
 
 void AScore::Interact(AThirdPersonDemoCharacter* CharRef)
 {
-	if(CharRef)
+	/*
+	* 	if(CharRef)
 	{
 		CharRef->SetScore(CharRef->GetScore() + ScoreAmount);
 		SpawnDestroyParticle();
 		Destroy();
 	}
+	 */
+
 }

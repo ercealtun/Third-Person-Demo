@@ -41,6 +41,10 @@ class AThirdPersonDemoCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
+	/** Attack Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* AttackAction;
+
 	/* Health */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float Health = 100.f;
@@ -60,6 +64,9 @@ class AThirdPersonDemoCharacter : public ACharacter
 	UPROPERTY(EditDefaultsOnly)
 	float SpeedTime = 3.f;
 
+	UPROPERTY(EditDefaultsOnly)
+	UAnimMontage* AttackMontage;
+
 public:
 	AThirdPersonDemoCharacter();
 
@@ -74,6 +81,8 @@ protected:
 	UFUNCTION()
 	void SphereCollisionBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
+
+	void Attack();
 			
 
 protected:

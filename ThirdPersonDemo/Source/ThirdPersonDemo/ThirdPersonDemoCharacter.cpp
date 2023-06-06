@@ -106,6 +106,9 @@ void AThirdPersonDemoCharacter::SetupPlayerInputComponent(class UInputComponent*
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AThirdPersonDemoCharacter::Look);
 
+		//Attacking
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &AThirdPersonDemoCharacter::Attack);
+
 	}
 
 }
@@ -146,6 +149,11 @@ void AThirdPersonDemoCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+void AThirdPersonDemoCharacter::Attack()
+{
+	GetMesh()->GetAnimInstance()->Montage_Play(AttackMontage);
+}
+
 void AThirdPersonDemoCharacter::SphereCollisionBeginOverlap(UPrimitiveComponent* OverlappedComponent,
 	AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
 	const FHitResult& SweepResult)
@@ -157,6 +165,8 @@ void AThirdPersonDemoCharacter::SphereCollisionBeginOverlap(UPrimitiveComponent*
 			InteractActor->Interact(this);
 	}
 }
+
+
 
 
 
